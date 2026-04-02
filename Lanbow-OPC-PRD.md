@@ -1,4 +1,4 @@
-# PRD: Lanbow for One — OPC AI 增长决策系统
+# PRD: Generative-AI-in-Marketing — OPC AI 增长决策系统
 
 > Product Requirements Document
 
@@ -6,7 +6,7 @@
 **日期:** 2026-03-31  
 **作者:** Product Team  
 **状态:** Draft  
-**关联文档:** [产品设计框架](./Lanbow-OPC-Product-Design.md)
+**关联文档:** [产品设计框架](./OPC-Product-Design.md)
 
 ---
 
@@ -27,10 +27,10 @@ OPC 用户需要的不是另一个工具，而是一个**能替代整个投放�
 
 打造一款 **Chat + Dashboard 双入口**的 AI 增长决策产品，让 OPC 电商创业者：
 
-- **5 分钟内**从产品链接到广告上线（vs 传统流程 2-3 天）
+- **5 分钟内**从产品链接到广告提交（vs 传统流程 2-3 天；Meta 审核额外需要 15 分钟至 24 小时）
 - **无需投放知识**即可获得专业级广告效果
-- **ROAS ≥ 2.0** 的平均投放回报率
-- **6 个月内**积累 10,000+ 活跃 OPC 用户
+- **ROAS 提升 ≥ 30%** 相对于用户手动投放基线（比绝对 ROAS 目标更公平，因 ROAS 取决于产品本身）
+- **6 个月内**积累 10,000+ 活跃 OPC 用户（配合 $50K+ 市场预算）
 
 ### 1.3 Target Users
 
@@ -56,11 +56,12 @@ OPC 用户需要的不是另一个工具，而是一个**能替代整个投放�
 ### 1.4 Scope
 
 **In Scope (v1.0):**
-- Chat Agent（OpenClaw 框架，支持 WhatsApp / Telegram / 微信）
+- Chat Agent（OpenClaw 框架，首发 Telegram，后续 WhatsApp）
 - Web Dashboard（Home / Campaigns / Creative Studio / Settings）
 - Meta（Facebook / Instagram）广告投放全链路
 - 自建素材生成引擎（文案 + 图片）
-- Free / Pro / Scale 三档定价
+- Free / Pro / Scale / Enterprise 四档定价
+- GDPR / CCPA 基础合规
 
 **Out of Scope (v1.0):**
 - TikTok / Google Ads 渠道（v2.0）
@@ -68,6 +69,7 @@ OPC 用户需要的不是另一个工具，而是一个**能替代整个投放�
 - Amazon Ads 集成（v2.0）
 - 企业版多账户协作（v2.0）
 - 自定义归因模型（v2.0）
+- 微信接入（v2.0，需中国市场专项合规）
 
 ---
 
@@ -78,12 +80,12 @@ OPC 用户需要的不是另一个工具，而是一个**能替代整个投放�
 1. **OPC 浪潮爆发** — 2025 年 OPC 注册量同比增长 47%，中国政府（深圳龙岗等）已出台 OpenClaw + OPC 专项补贴
 2. **AI Agent 基础设施成熟** — OpenClaw 框架提供了 Chat → 执行的完整通道，Claw Skill 架构让功能可组合、可分发
 3. **获客成本危机** — 电商获客成本持续攀升，OPC 用户对效率工具的付费意愿正在提高
-4. **Lanbow 技术储备** — 已积累 $10M+ 的 Meta 广告投放经验，Claw Skill 达到 92%+ 执行完成率
+4. **平台技术储备** — 已积累 $10M+ 的 Meta 广告投放经验，Claw Skill 达到 92%+ 执行完成率
 
 ### 2.2 Strategic Alignment
 
 ```
-Lanbow 企业级增长决策系统
+Generative-AI-in-Marketing 企业级增长决策系统
           │
           ├── Enterprise Layer（付费，$20M+ 年投放客户）
           │   └── Realize → Manif → Hunt → AGX → Lan57
@@ -99,10 +101,23 @@ Lanbow 企业级增长决策系统
 | 指标 | 当前状态 | 目标 |
 |------|---------|------|
 | Claw Skill 执行完成率 | 92% | 97% |
-| 用户从注册到首投时间 | N/A（新产品） | < 5 min |
-| 用户平均 ROAS | N/A | ≥ 2.0 |
-| 月活 OPC 用户数 | 0 | 10,000（6 个月内） |
-| Free → Pro 转化率 | N/A | ≥ 8% |
+| 用户从注册到首投提交时间 | N/A（新产品） | < 5 min（不含 Meta 审核时间） |
+| 用户 ROAS 提升率 | N/A | ≥ 30% vs 手动投放基线 |
+| 月活 OPC 用户数 | 0 | 10,000（6 个月内，配合 $50K+ 市场预算） |
+| Free → Pro 转化率 | N/A | ≥ 5%（行业基准 2-5%，保守目标） |
+
+### 2.4 团队配置假设
+
+本 PRD 时间线基于以下团队配置：
+
+| 角色 | 人数 | 职责 |
+|------|------|------|
+| Product Manager | 1 | 需求定义、优先级管理 |
+| Full-stack Engineer | 3 | Dashboard + API + 集成 |
+| AI/ML Engineer | 1 | 素材生成引擎 + 优化模型 |
+| Frontend Engineer | 1 | Dashboard UI + Chat Agent 前端 |
+| Designer | 1 | UI/UX 设计 |
+| **合计** | **7** | |
 
 ---
 
@@ -168,7 +183,7 @@ Lanbow 企业级增长决策系统
 
 > **As** a new user,  
 > **I want to** connect my Meta ad account securely,  
-> **So that** Lanbow can manage ads on my behalf.
+> **So that** the platform can manage ads on my behalf.
 
 **Acceptance Criteria:**
 - [ ] 支持 Meta OAuth 授权流程
@@ -383,9 +398,9 @@ Agent detects creative fatigue (CTR declining 3+ days)
 │                                                                  │
 │  ┌──────────────────┐    ┌─────────────────────────────────┐    │
 │  │  Chat Clients     │    │  Web Dashboard (Next.js / React) │    │
-│  │  · WhatsApp       │    │  · SSR for SEO                   │    │
-│  │  · Telegram       │    │  · WebSocket for real-time       │    │
-│  │  · WeChat         │    │  · Responsive (mobile-first)     │    │
+│  │  · Telegram (v1)  │    │  · SSR for SEO                   │    │
+│  │  · WhatsApp (v2)  │    │  · WebSocket for real-time       │    │
+│  │                    │    │  · Responsive (mobile-first)     │    │
 │  │  via OpenClaw     │    │                                  │    │
 │  └────────┬─────────┘    └──────────────┬────────────────────┘    │
 │           │                              │                        │
@@ -412,24 +427,43 @@ Agent detects creative fatigue (CTR declining 3+ days)
 ├───────┴────────────┴────────────┴─────────────┴───────────────────┤
 │                         Data Layer                                │
 │                                                                   │
+├───────────────────────────────────────────────────────────────────┤
+│                    Message Queue (BullMQ on Redis)                 │
+│  · Campaign creation/launch (async Meta API calls)                │
+│  · Creative generation jobs                                       │
+│  · Daily report scheduling                                        │
+│  · Retry with exponential backoff for Meta API failures           │
+├───────────────────────────────────────────────────────────────────┤
+│                         Data Layer                                │
+│                                                                   │
 │  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────────────┐   │
-│  │PostgreSQL│ │  Redis   │ │  S3/R2   │ │ Meta Marketing   │   │
+│  │PostgreSQL│ │  Redis   │ │S3/R2+CDN │ │ Meta Marketing   │   │
 │  │          │ │          │ │          │ │ API              │   │
 │  │ · Users  │ │ · Cache  │ │ · Assets │ │                   │   │
 │  │ · Camps  │ │ · Session│ │ · Images │ │ · Campaign CRUD  │   │
-│  │ · Products│ │ · Queue │ │ · Videos │ │ · Audience Mgmt  │   │
-│  │ · Metrics│ │          │ │          │ │ · Conversion API │   │
+│  │ · Products│ │ · BullMQ│ │ · Videos │ │ · Audience Mgmt  │   │
+│  │ · Metrics│ │ · PubSub │ │(Cloudflare│ │ · Conversion API │   │
+│  │          │ │          │ │  CDN)    │ │                   │   │
 │  └──────────┘ └──────────┘ └──────────┘ └──────────────────┘   │
+│                                                                   │
+│  ┌──────────────────┐                                             │
+│  │ Secrets Manager   │ ← Meta tokens 独立加密存储 (AWS KMS)       │
+│  └──────────────────┘                                             │
 └───────────────────────────────────────────────────────────────────┘
 ```
 
 ### 5.2 Core API Contracts
 
+**通用规范：**
+- 所有 `GET` 列表接口支持 `?page=1&per_page=20&sort=created_at&order=desc&q=keyword` 分页/排序/搜索
+- API 版本策略：`/api/v1/` 为稳定版，breaking change 升级 major version，旧版保留 6 个月
+- Rate Limit: Free 100 req/min, Pro 500 req/min, Scale 2000 req/min
+
 #### Campaign API
 
 ```
-POST   /api/v1/campaigns              # 创建广告（一键开投）
-GET    /api/v1/campaigns               # 获取广告列表
+POST   /api/v1/campaigns              # 创建广告（一键开投）— 异步，返回 job_id
+GET    /api/v1/campaigns               # 获取广告列表（分页）
 GET    /api/v1/campaigns/:id           # 获取广告详情
 PATCH  /api/v1/campaigns/:id           # 更新广告配置
 POST   /api/v1/campaigns/:id/optimize  # 应用优化建议
@@ -474,7 +508,8 @@ User
 └── settings: UserSettings
 
 MetaAccount
-├── id, user_id, meta_account_id, access_token
+├── id, user_id, meta_account_id
+├── token_ref: string (指向 Secrets Manager 中的加密 token，不直接存储)
 ├── status: connected | expired | revoked
 └── last_synced_at
 
@@ -487,14 +522,14 @@ Product
 Campaign
 ├── id, user_id, product_id, meta_campaign_id
 ├── status: draft | active | paused | completed | error
-├── daily_budget, total_budget, min_roas
+├── daily_budget, total_budget, min_roas, currency (USD|EUR|GBP|CNY...)
 ├── target_market, target_audience
 ├── creatives: Creative[]
 ├── metrics: CampaignMetric[]
 └── optimizations: Optimization[]
 
 Creative
-├── id, campaign_id, type: image | video
+├── id, user_id, campaign_id, type: image | video  (user_id 冗余字段，支持 Asset Library 跨 campaign 查询)
 ├── headline, body_text, cta
 ├── asset_url, thumbnail_url
 ├── sizes: { "1:1": url, "9:16": url }
@@ -506,7 +541,12 @@ CampaignMetric (time-series, daily)
 ├── campaign_id, date
 ├── spend, revenue, orders, roas
 ├── impressions, clicks, ctr, cpc, cpa
-└── audience_breakdown: JSON
+└── (audience_breakdown 拆为独立 AudienceMetric 表，支持索引和跨 campaign 查询)
+
+AudienceMetric (time-series, daily)
+├── campaign_id, date, segment_key (e.g. "25-28M")
+├── spend, revenue, roas, impressions, clicks
+└── (可按 segment 聚合分析)
 
 Optimization
 ├── id, campaign_id, type: budget | creative | audience | pause
@@ -534,14 +574,18 @@ Optimization
 | 领域 | 措施 |
 |------|------|
 | **认证** | JWT + OAuth 2.0, Session 过期 24h |
-| **Meta Token** | AES-256 加密存储, Token rotation |
+| **Meta Token** | 独立 Secrets Manager (AWS KMS) 加密存储, 自动 Token rotation, 过期前 7 天提醒用户 |
 | **数据传输** | 全链路 HTTPS/TLS 1.3 |
 | **数据存储** | PII 字段加密, 数据库加密 at rest |
 | **权限** | RBAC (为未来多用户扩展预留) |
-| **合规** | GDPR (EU) + CCPA (CA) + PIPL (CN) |
-| **审计** | 所有广告操作记录完整审计日志 |
-| **速率限制** | API 级别 + Meta API 配额管理 |
-| **素材安全** | AI 生成内容过滤（色情/暴力/政治） |
+| **合规** | GDPR (EU) + CCPA (CA)；PIPL 推迟至微信接入时 |
+| **数据保留** | 广告指标 2 年；账户删除后 30 天清除全部 PII |
+| **用户权利** | 支持数据导出 (Right to Portability)、账户删除 (Right to Erasure)、30 天内响应 |
+| **租户隔离** | Row-Level Security (PostgreSQL RLS)，确保用户间数据不可互访 |
+| **审计** | 所有广告操作记录完整审计日志，不可篡改 |
+| **速率限制** | Platform API: Free 100/min, Pro 500/min, Scale 2000/min; Meta API: per-account 配额池 + BullMQ 排队 + exponential backoff |
+| **素材安全** | AI 生成内容经 Meta Ad Policy 预审检查 + 敏感内容过滤（色情/暴力/政治） |
+| **反滥用** | Free Tier: 每日素材生成 ≤ 5 次，产品导入需验证 URL 可访问性 |
 
 ---
 
@@ -551,11 +595,11 @@ Optimization
 
 | KPI | 目标 | 测量方式 | 频率 |
 |-----|------|---------|------|
-| **Monthly Active Users (MAU)** | 10,000（Month 6） | 产品内埋点 | Weekly |
-| **Avg ROAS** | ≥ 2.0 | Meta API 回传数据 | Daily |
-| **Time-to-First-Ad** | < 5 min | 注册到首个广告上线的时间差 | Per user |
-| **Free → Pro Conversion** | ≥ 8% | Billing events | Monthly |
-| **Net Revenue Retention** | ≥ 110% | MRR 留存 | Monthly |
+| **Monthly Active Users (MAU)** | 10,000（Month 6，配合 $50K+ 市场预算） | 产品内埋点 (Mixpanel) | Weekly |
+| **ROAS 提升率** | ≥ 30% vs 用户手动投放基线 | 对照组 A/B 测试 + 用户自报基线 | Monthly |
+| **Time-to-First-Ad-Submitted** | < 5 min | 注册到首个广告提交的时间差（不含 Meta 审核） | Per user |
+| **Free → Pro Conversion** | ≥ 5% | Billing events (Stripe) | Monthly |
+| **Pro Monthly Churn** | < 5% | Billing events | Monthly |
 
 ### 6.2 Secondary Metrics
 
@@ -574,6 +618,25 @@ Optimization
 - **Phase 2 (Month 3-4):** 开始追踪 ROAS + Daily Report 互动率
 - **Phase 3 (Month 5-6):** 全面追踪转化率 + 留存 + NPS
 - **工具:** Mixpanel (产品分析) + Stripe (营收) + 自建 Dashboard (广告指标)
+
+---
+
+## 6.4 Pricing Table
+
+| | **Free** | **Pro — $49/月** | **Scale — $149/月** | **Enterprise — 按需** |
+|---|---|---|---|---|
+| 产品数 | 1 | 5 | 无限 | 无限 |
+| 广告账户 | 1 | 3 | 10 | 无限 |
+| AI 素材生成 | 5 次/天 | 20 次/月 | 无限 | 无限 |
+| 日报推送 | ✓ | ✓ | ✓ | ✓ |
+| 一键优化 | 基础 | 完整 | 完整 + 自定义策略 | 完整 + Lan57 |
+| 预算护栏 | — | ✓ | ✓ | ✓ |
+| A/B 测试 | — | ✓ | ✓ | ✓ |
+| 多渠道 | Meta only | Meta only | Meta + TikTok + Google | 全渠道 |
+| 支持 | 社区 | 优先邮件 | 专属顾问 | 客户成功经理 + SLA |
+| API Rate Limit | 100/min | 500/min | 2000/min | 定制 |
+
+**定价逻辑:** Pro 定价 $49 确保对月预算 $500 的用户成本占比 < 10%。Enterprise 独立定价服务年投放 $1M+ 客户。
 
 ---
 

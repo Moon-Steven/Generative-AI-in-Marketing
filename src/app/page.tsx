@@ -1,65 +1,152 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { motion } from "framer-motion";
+import {
+  Sparkles,
+  Zap,
+  BarChart3,
+  Radio,
+  FileText,
+  TrendingUp,
+  DollarSign,
+  MousePointerClick,
+} from "lucide-react";
+import Link from "next/link";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { PageHeader } from "@/components/layout/page-header";
+import { NextStepBanner } from "@/components/layout/next-step-banner";
+
+const stats = [
+  { label: "Pages Generated", value: "127", icon: FileText, trend: "+12 this week", color: "text-chart-1" },
+  { label: "Active Campaigns", value: "8", icon: TrendingUp, trend: "3 A/B tests running", color: "text-chart-2" },
+  { label: "Avg CVR Improvement", value: "+34.2%", icon: MousePointerClick, trend: "vs original pages", color: "text-chart-3" },
+  { label: "Revenue Attributed", value: "$48.2K", icon: DollarSign, trend: "Last 30 days", color: "text-chart-4" },
+];
+
+const quickActions = [
+  {
+    href: "/generate",
+    icon: Sparkles,
+    title: "Generate Landing Page",
+    description: "Create an AI-powered landing page from your ad copy",
+    badge: "Core",
+  },
+  {
+    href: "/triggers",
+    icon: Zap,
+    title: "Behavioral Triggers",
+    description: "Configure conversion triggers for your landing pages",
+  },
+  {
+    href: "/campaigns",
+    icon: BarChart3,
+    title: "Campaign Dashboard",
+    description: "View conversion metrics and A/B test results",
+  },
+  {
+    href: "/tracking",
+    icon: Radio,
+    title: "Tracking Pixel",
+    description: "Set up behavior tracking and data collection",
+  },
+];
+
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.06 },
+  },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 12 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.35 } },
+};
+
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+    <div>
+      <PageHeader
+        title="Overview"
+        description="Your generative marketing command center"
+      />
+
+      {/* KPI Stats */}
+      <motion.div
+        className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8"
+        variants={container}
+        initial="hidden"
+        animate="show"
+      >
+        {stats.map((stat) => (
+          <motion.div key={stat.label} variants={item}>
+            <Card className="bg-card border-border">
+              <CardContent className="pt-5 pb-4 px-5">
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
+                    {stat.label}
+                  </span>
+                  <stat.icon className={`h-4 w-4 ${stat.color}`} />
+                </div>
+                <p className="text-2xl font-bold tracking-tight font-mono">
+                  {stat.value}
+                </p>
+                <p className="text-xs text-muted-foreground mt-1">
+                  {stat.trend}
+                </p>
+              </CardContent>
+            </Card>
+          </motion.div>
+        ))}
+      </motion.div>
+
+      {/* Quick Actions */}
+      <motion.div
+        className="grid grid-cols-1 lg:grid-cols-2 gap-4"
+        variants={container}
+        initial="hidden"
+        animate="show"
+      >
+        {quickActions.map((action) => (
+          <motion.div key={action.href} variants={item}>
+            <Link href={action.href}>
+              <Card className="bg-card border-border hover:border-primary/30 hover:bg-card/80 transition-all cursor-pointer group">
+                <CardContent className="pt-5 pb-4 px-5">
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                      <action.icon className="h-5 w-5 text-primary" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2">
+                        <h3 className="text-sm font-semibold">
+                          {action.title}
+                        </h3>
+                        {action.badge && (
+                          <Badge variant="secondary" className="text-[10px] px-1.5 py-0">
+                            {action.badge}
+                          </Badge>
+                        )}
+                      </div>
+                      <p className="text-xs text-muted-foreground mt-1">
+                        {action.description}
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+          </motion.div>
+        ))}
+      </motion.div>
+
+      <NextStepBanner
+        icon={Sparkles}
+        label="Generate a Landing Page"
+        description="Start the demo by creating an AI-powered LP from ad copy"
+        href="/generate"
+      />
     </div>
   );
 }

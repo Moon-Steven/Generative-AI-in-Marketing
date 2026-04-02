@@ -1,0 +1,105 @@
+import type { BehavioralTrigger } from "@/lib/types/triggers";
+
+export const mockTriggers: BehavioralTrigger[] = [
+  {
+    id: "trig-exit-intent",
+    name: "Exit Intent Discount",
+    type: "exit_intent",
+    action: "popup",
+    enabled: true,
+    config: {
+      headline: "Wait — Don't Miss Your 30% Off!",
+      body: "You're about to leave without claiming your exclusive first-time discount. This offer won't last.",
+      ctaText: "Claim My 30% Discount",
+      discountCode: "GLOW30",
+    },
+    intentSegment: "churn_risk",
+    stats: {
+      impressions: 3420,
+      conversions: 548,
+      conversionRate: 16.0,
+    },
+  },
+  {
+    id: "trig-scroll-countdown",
+    name: "Scroll-Triggered Countdown",
+    type: "scroll_depth",
+    action: "countdown",
+    enabled: true,
+    config: {
+      scrollThreshold: 60,
+      headline: "Limited Time Offer Expires Soon",
+      body: "Your exclusive 30% discount + free shipping ends when the timer hits zero.",
+      ctaText: "Order Now Before Time Runs Out",
+      countdownMinutes: 15,
+    },
+    intentSegment: "hesitating",
+    stats: {
+      impressions: 2180,
+      conversions: 392,
+      conversionRate: 18.0,
+    },
+  },
+  {
+    id: "trig-bundle",
+    name: "Smart Bundle Upsell",
+    type: "time_delay",
+    action: "bundle_offer",
+    enabled: true,
+    config: {
+      delaySeconds: 45,
+      headline: "Complete Your Skincare Routine",
+      body: "Customers who bought the serum also love these. Save 20% when you bundle.",
+      ctaText: "Add Bundle & Save 20%",
+      bundleProducts: [
+        { name: "Vitamin C Moisturizer", price: 34.99, imageUrl: "" },
+        { name: "Gentle Cleanser", price: 24.99, imageUrl: "" },
+        { name: "SPF 50 Sunscreen", price: 29.99, imageUrl: "" },
+      ],
+    },
+    intentSegment: "high_intent",
+    stats: {
+      impressions: 1560,
+      conversions: 312,
+      conversionRate: 20.0,
+    },
+  },
+  {
+    id: "trig-cart-abandon",
+    name: "Cart Abandonment Recovery",
+    type: "cart_abandonment",
+    action: "popup",
+    enabled: true,
+    config: {
+      headline: "Your Cart is Waiting!",
+      body: "You have items in your cart. Complete your order now and get free express shipping.",
+      ctaText: "Complete My Order",
+      discountCode: "FREESHIP",
+    },
+    intentSegment: "churn_risk",
+    stats: {
+      impressions: 890,
+      conversions: 178,
+      conversionRate: 20.0,
+    },
+  },
+  {
+    id: "trig-email-capture",
+    name: "Email Capture — Price Drop Alert",
+    type: "idle",
+    action: "email_capture",
+    enabled: false,
+    config: {
+      idleSeconds: 30,
+      headline: "Get Notified When Prices Drop",
+      body: "Enter your email and we'll alert you when this product goes on sale or comes back in stock.",
+      ctaText: "Notify Me",
+    },
+    intentSegment: "hesitating",
+    stats: {
+      impressions: 620,
+      conversions: 124,
+      conversionRate: 20.0,
+    },
+  },
+];

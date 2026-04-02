@@ -36,8 +36,8 @@ export function Sidebar() {
             <Zap className="w-5 h-5 text-white" />
           </div>
           <div>
-            <h1 className="text-white font-semibold text-lg leading-tight">Lanbow</h1>
-            <p className="text-xs text-sidebar-text">for One</p>
+            <h1 className="text-white font-semibold text-lg leading-tight">Marketing AI</h1>
+            <p className="text-xs text-sidebar-text">Dashboard</p>
           </div>
         </div>
       </div>
@@ -50,23 +50,32 @@ export function Sidebar() {
             : pathname.startsWith(item.href) && item.href !== "#";
           const Icon = item.icon;
 
+          if (item.disabled) {
+            return (
+              <span
+                key={item.label}
+                className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm opacity-40 cursor-not-allowed"
+                aria-disabled="true"
+              >
+                <Icon className="w-[18px] h-[18px]" />
+                {item.label}
+                <span className="ml-auto text-[10px] bg-white/10 px-1.5 py-0.5 rounded">Soon</span>
+              </span>
+            );
+          }
+
           return (
             <Link
               key={item.label}
-              href={item.disabled ? "#" : item.href}
+              href={item.href}
               className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all ${
-                item.disabled
-                  ? "opacity-40 cursor-not-allowed"
-                  : isActive
+                isActive
                   ? "bg-sidebar-active/15 text-white"
                   : "hover:bg-white/5 hover:text-white"
               }`}
             >
               <Icon className={`w-[18px] h-[18px] ${isActive ? "text-sidebar-active" : ""}`} />
               {item.label}
-              {item.disabled && (
-                <span className="ml-auto text-[10px] bg-white/10 px-1.5 py-0.5 rounded">Soon</span>
-              )}
             </Link>
           );
         })}

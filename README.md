@@ -1,36 +1,132 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Generative-AI-in-Marketing — OPC AI Growth Decision System
 
-## Getting Started
+> Put a growth team in a chat box.
 
-First, run the development server:
+AI-powered growth decision system for global OPC (One Person Company) e-commerce sellers. Chat + Dashboard dual-entry product that automates the full ad lifecycle: insight -> creative -> launch -> optimize.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Project Structure
+
+```
+Marketing-Project/
+├── README.md                          <- You are here
+├── OPC-Product-Design.md              <- Product design framework (v0.1)
+├── OPC-PRD.md                         <- Product requirements document (v1.0)
+└── marketing-dashboard/               <- Interactive prototype (Next.js)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Documents
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 1. Product Design Framework
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+**File:** `OPC-Product-Design.md`
 
-## Learn More
+Covers product vision, user personas, architecture, user journeys, dashboard wireframes, creative engine design, pricing model, GTM strategy, compliance, and success metrics.
 
-To learn more about Next.js, take a look at the following resources:
+Key sections:
+- Target user: OPC sellers with $500-$5,000/month ad budget
+- Chat-first (Telegram -> WhatsApp) + Web Dashboard
+- Self-built creative engine (LLM copy + Diffusion images)
+- 4-tier pricing: Free / Pro $49 / Scale $149 / Enterprise
+- OpenClaw + Claw Skill open-source strategy
+- Competitive analysis (Madgicx, Revealbot, Smartly.io, AdCreative.ai)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 2. PRD (Product Requirements Document)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**File:** `OPC-PRD.md`
 
-## Deploy on Vercel
+Full PRD with 12 user stories (P0-P2), technical architecture, API contracts, data model, success metrics, 26-week timeline, and open questions.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Key specs:
+- 7-person team, 4-phase delivery (Foundation -> Intelligence -> Growth -> Scale)
+- PostgreSQL + Redis (BullMQ) + S3/R2 + CDN + Secrets Manager
+- Meta Marketing API integration with async job queue
+- GDPR/CCPA compliance with data retention policies
+- Pricing table with tier-gated feature matrix
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 3. Interactive Prototype
+
+**Directory:** `marketing-dashboard/`
+
+Next.js 16 + React + TypeScript + Tailwind CSS + Recharts prototype with 5 core pages.
+
+## Running the Prototype
+
+```bash
+cd marketing-dashboard
+
+# Install dependencies
+npm install
+
+# Development mode
+npm run dev
+
+# Production mode (recommended)
+npm run build && npm start
+```
+
+Open http://localhost:3000 in your browser.
+
+## Prototype Pages
+
+| Page | URL | Description |
+|------|-----|-------------|
+| **Home** | `/` | KPI cards, action items, 7-day trend chart, agent recommendations |
+| **Campaigns** | `/campaigns` | Campaign list with filters, search, status management |
+| **Campaign Detail** | `/campaigns/:id` | Performance charts, creative comparison, audience breakdown |
+| **Creative Studio** | `/creative-studio` | AI creative generator, variant preview with CTR estimates, asset library |
+| **Onboarding** | `/onboarding` | 4-step wizard: Connect Meta -> Import Product -> Set Budget -> Launch |
+
+## Tech Stack (Prototype)
+
+- **Framework:** Next.js 16 (App Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS 4 with custom design tokens
+- **Charts:** Recharts
+- **Icons:** Lucide React
+
+## Key Features Demonstrated
+
+- Responsive layout (mobile + desktop breakpoints)
+- Interactive agent recommendation cards (Execute / Later with toast feedback)
+- Campaign filtering and status management
+- Creative variant generation with loading animation
+- Budget guardrail configuration with input validation
+- Empty state handling for campaigns without data
+- Sidebar navigation with disabled "coming soon" items
+
+## Architecture (Target)
+
+```
+Chat (Telegram/WhatsApp via OpenClaw)  <->  Web Dashboard (Next.js)
+                    |                              |
+                 API Gateway (JWT + OAuth + Rate Limiting)
+                    |
+    +------------+------------+-----------+--------------+
+    | Campaign   | Creative   | Insight   | Notification |
+    | Service    | Service    | Service   | Service      |
+    +-----+------+-----+------+----+------+------+------+
+          |            |           |             |
+       BullMQ (Redis) -- Async Job Queue
+          |
+    +-----+------+----------+----------+------------+
+    | PostgreSQL |  Redis   | S3 + CDN | Meta API   |
+    | (RLS)      | (Cache)  | (Assets) | (Ads)      |
+    +------------+----------+----------+------------+
+```
+
+## Roadmap
+
+- **Phase 1 (W1-6):** Foundation -- DB, API skeleton, Meta OAuth, one-click launch
+- **Phase 2 (W7-12):** Intelligence -- Daily reports, optimization engine, creative generation
+- **Phase 3 (W13-18):** Growth -- Beta launch, user feedback iteration, public launch
+- **Phase 4 (W19-26):** Scale -- Scale tier, enterprise outreach, multi-channel exploration
+
+## Related
+
+- **Platform:** [generative-ai-marketing.com](https://generative-ai-marketing.com)
+- **OpenClaw Framework:** Open-source AI agent framework for chat-to-execution
+- **Claw Skill:** Open-source Meta ad execution skill on ClawHub
+
+---
+
+*Generated: 2026-03-31*

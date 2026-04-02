@@ -1,8 +1,11 @@
+// KPI data: "today" values should be consistent fractions of weekly totals
+// Weekly totals: revenue ~$3,040, spend ~$890, orders ~129
+// Today's values are roughly 1 day's average
 export const kpiData = {
-  revenue: { value: 2847, change: 12.3, label: "Revenue", prefix: "$" },
-  orders: { value: 127, change: 8.1, label: "Orders", prefix: "" },
-  roas: { value: 3.2, change: 0.4, label: "ROAS", prefix: "", suffix: "x" },
-  spend: { value: 890, change: 5.2, label: "Ad Spend", prefix: "$" },
+  revenue: { value: 434, change: 12.3, label: "Revenue", prefix: "$" },
+  orders: { value: 18, change: 8.1, label: "Orders", prefix: "" },
+  roas: { value: 3.2, change: 14.3, label: "ROAS", prefix: "", suffix: "x" },
+  spend: { value: 136, change: 5.2, label: "Ad Spend", prefix: "$" },
 };
 
 export const trendData = [
@@ -69,9 +72,26 @@ export const campaigns = [
     startDate: "2026-03-05",
     market: "Europe",
     healthTag: "top",
-    creatives: [],
-    audienceBreakdown: [],
-    performanceHistory: [],
+    creatives: [
+      { id: "c4", name: "Creative A", headline: "Flex Without Limits", ctr: 3.1, roas: 4.5, status: "top" as const, image: "🧘" },
+      { id: "c5", name: "Creative B", headline: "Comfort Meets Performance", ctr: 2.4, roas: 3.8, status: "ok" as const, image: "💪" },
+    ],
+    audienceBreakdown: [
+      { segment: "25-34F", percentage: 45, roas: 4.8 },
+      { segment: "35-44F", percentage: 28, roas: 3.5 },
+      { segment: "18-24F", percentage: 15, roas: 3.2 },
+      { segment: "Other", percentage: 12, roas: 2.1 },
+    ],
+    performanceHistory: [
+      { date: "Mar 05", spend: 38, revenue: 140, roas: 3.7 },
+      { date: "Mar 08", spend: 40, revenue: 156, roas: 3.9 },
+      { date: "Mar 11", spend: 40, revenue: 160, roas: 4.0 },
+      { date: "Mar 14", spend: 39, revenue: 168, roas: 4.3 },
+      { date: "Mar 17", spend: 40, revenue: 172, roas: 4.3 },
+      { date: "Mar 20", spend: 41, revenue: 164, roas: 4.0 },
+      { date: "Mar 23", spend: 40, revenue: 180, roas: 4.5 },
+      { date: "Mar 26", spend: 42, revenue: 178, roas: 4.2 },
+    ],
   },
   {
     id: "3",
@@ -87,9 +107,24 @@ export const campaigns = [
     startDate: "2026-03-15",
     market: "United States",
     healthTag: "ok",
-    creatives: [],
-    audienceBreakdown: [],
-    performanceHistory: [],
+    creatives: [
+      { id: "c6", name: "Creative A", headline: "Protection That Stands Out", ctr: 2.2, roas: 3.0, status: "ok" as const, image: "📱" },
+      { id: "c7", name: "Creative B", headline: "Drop-Proof Guaranteed", ctr: 1.9, roas: 2.5, status: "ok" as const, image: "🛡️" },
+    ],
+    audienceBreakdown: [
+      { segment: "18-24M", percentage: 32, roas: 3.2 },
+      { segment: "25-34M", percentage: 28, roas: 2.9 },
+      { segment: "18-24F", percentage: 22, roas: 2.5 },
+      { segment: "Other", percentage: 18, roas: 1.8 },
+    ],
+    performanceHistory: [
+      { date: "Mar 15", spend: 24, revenue: 60, roas: 2.5 },
+      { date: "Mar 18", spend: 25, revenue: 68, roas: 2.7 },
+      { date: "Mar 21", spend: 25, revenue: 72, roas: 2.9 },
+      { date: "Mar 24", spend: 24, revenue: 75, roas: 3.1 },
+      { date: "Mar 27", spend: 25, revenue: 70, roas: 2.8 },
+      { date: "Mar 30", spend: 25, revenue: 74, roas: 3.0 },
+    ],
   },
   {
     id: "4",
@@ -105,9 +140,22 @@ export const campaigns = [
     startDate: "2026-03-18",
     market: "United Kingdom",
     healthTag: "ok",
-    creatives: [],
-    audienceBreakdown: [],
-    performanceHistory: [],
+    creatives: [
+      { id: "c8", name: "Creative A", headline: "Upgrade Your Sound", ctr: 2.6, roas: 3.7, status: "top" as const, image: "🎶" },
+    ],
+    audienceBreakdown: [
+      { segment: "25-34M", percentage: 40, roas: 3.8 },
+      { segment: "25-34F", percentage: 30, roas: 3.4 },
+      { segment: "35-44M", percentage: 20, roas: 2.9 },
+      { segment: "Other", percentage: 10, roas: 1.5 },
+    ],
+    performanceHistory: [
+      { date: "Mar 18", spend: 18, revenue: 58, roas: 3.2 },
+      { date: "Mar 21", spend: 20, revenue: 72, roas: 3.6 },
+      { date: "Mar 24", spend: 19, revenue: 70, roas: 3.7 },
+      { date: "Mar 27", spend: 20, revenue: 74, roas: 3.7 },
+      { date: "Mar 30", spend: 20, revenue: 68, roas: 3.4 },
+    ],
   },
   {
     id: "5",
@@ -123,19 +171,30 @@ export const campaigns = [
     startDate: "2026-03-01",
     market: "Germany",
     healthTag: "paused",
-    creatives: [],
-    audienceBreakdown: [],
-    performanceHistory: [],
+    creatives: [
+      { id: "c9", name: "Creative A", headline: "Light Up Your Workspace", ctr: 0.8, roas: 0.8, status: "low" as const, image: "💡" },
+    ],
+    audienceBreakdown: [
+      { segment: "25-34M", percentage: 35, roas: 1.0 },
+      { segment: "35-44M", percentage: 30, roas: 0.7 },
+      { segment: "Other", percentage: 35, roas: 0.6 },
+    ],
+    performanceHistory: [
+      { date: "Mar 01", spend: 28, revenue: 20, roas: 0.7 },
+      { date: "Mar 04", spend: 30, revenue: 22, roas: 0.7 },
+      { date: "Mar 07", spend: 25, revenue: 24, roas: 1.0 },
+      { date: "Mar 10", spend: 12, revenue: 10, roas: 0.8 },
+    ],
   },
 ];
 
 export const actionItems = [
   {
-    id: "a1",
+    id: "act1",
     type: "creative_fatigue" as const,
     campaign: "Bluetooth Earbuds US",
     campaignId: "1",
-    message: 'Creative fatigue detected — CTR dropped 23% in 3 days',
+    message: "Creative fatigue detected — CTR dropped 23% in 3 days",
     suggestion: "Generate 3 new creative variants to replace fatigued assets",
     severity: "warning" as const,
   },
@@ -155,10 +214,18 @@ export const creativeVariants = [
 ];
 
 export const assetLibrary = [
-  { id: "a1", name: "Earbuds Hero Shot", type: "image", status: "live" as const, usedIn: 2 },
-  { id: "a2", name: "Lifestyle — Gym", type: "image", status: "live" as const, usedIn: 1 },
-  { id: "a3", name: "Product — White BG", type: "image", status: "draft" as const, usedIn: 0 },
-  { id: "a4", name: "Yoga Pants — Studio", type: "image", status: "live" as const, usedIn: 1 },
-  { id: "a5", name: "Phone Case — Lifestyle", type: "image", status: "used" as const, usedIn: 0 },
-  { id: "a6", name: "Earbuds — Unboxing", type: "image", status: "used" as const, usedIn: 0 },
+  { id: "ast1", name: "Earbuds Hero Shot", type: "image", status: "live" as const, usedIn: 2 },
+  { id: "ast2", name: "Lifestyle — Gym", type: "image", status: "live" as const, usedIn: 1 },
+  { id: "ast3", name: "Product — White BG", type: "image", status: "draft" as const, usedIn: 0 },
+  { id: "ast4", name: "Yoga Pants — Studio", type: "image", status: "live" as const, usedIn: 1 },
+  { id: "ast5", name: "Phone Case — Lifestyle", type: "image", status: "used" as const, usedIn: 0 },
+  { id: "ast6", name: "Earbuds — Unboxing", type: "image", status: "used" as const, usedIn: 0 },
 ];
+
+// Derived stats for Quick Stats section
+export const quickStats = {
+  activeProducts: 5,
+  totalCreatives: campaigns.reduce((sum, c) => sum + c.creatives.length, 0) + creativeVariants.length,
+  monthRevenue: campaigns.reduce((sum, c) => sum + c.revenue, 0),
+  monthSpend: campaigns.reduce((sum, c) => sum + c.spend, 0),
+};

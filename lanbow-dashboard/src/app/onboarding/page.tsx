@@ -29,7 +29,7 @@ export default function OnboardingPage() {
           <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center mx-auto mb-3">
             <Zap className="w-6 h-6 text-white" />
           </div>
-          <h1 className="text-2xl font-bold text-foreground">Lanbow for One</h1>
+          <h1 className="text-2xl font-bold text-foreground">Generative-AI-in-Marketing</h1>
           <p className="text-muted-foreground text-sm mt-1">Launch your first ad in 5 minutes</p>
         </div>
 
@@ -162,8 +162,13 @@ export default function OnboardingPage() {
                     <DollarSign className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                     <input
                       type="number"
+                      min="5"
+                      max="10000"
                       value={dailyBudget}
-                      onChange={(e) => setDailyBudget(e.target.value)}
+                      onChange={(e) => {
+                        const v = e.target.value;
+                        if (v === "" || (Number(v) >= 0 && Number(v) <= 10000)) setDailyBudget(v);
+                      }}
                       className="w-full pl-9 pr-16 py-3 border border-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
                     />
                     <span className="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-muted-foreground">/ day</span>
@@ -184,7 +189,12 @@ export default function OnboardingPage() {
                       type="number"
                       step="0.1"
                       value={minRoas}
-                      onChange={(e) => setMinRoas(e.target.value)}
+                      min="0.1"
+                      max="10"
+                      onChange={(e) => {
+                        const v = e.target.value;
+                        if (v === "" || (Number(v) >= 0 && Number(v) <= 10)) setMinRoas(v);
+                      }}
                       className="w-full pl-9 pr-4 py-3 border border-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
                     />
                   </div>
@@ -194,7 +204,7 @@ export default function OnboardingPage() {
                 </div>
                 <div className="bg-indigo-50 border border-indigo-200 rounded-xl p-4">
                   <p className="text-sm text-indigo-800">
-                    <strong>Estimated:</strong> At ${dailyBudget}/day with a 2.0x ROAS, you could generate ~${parseInt(dailyBudget) * 2}/day in revenue.
+                    <strong>Estimated:</strong> At ${dailyBudget || "0"}/day with a 2.0x ROAS, you could generate ~${(Number(dailyBudget) || 0) * 2}/day in revenue.
                   </p>
                 </div>
               </div>

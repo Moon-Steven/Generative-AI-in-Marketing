@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Lanbow for One — AI Growth Dashboard",
+  title: "Generative-AI-in-Marketing — AI Growth Dashboard",
   description: "AI-powered growth decision system for OPC e-commerce sellers",
 };
 
